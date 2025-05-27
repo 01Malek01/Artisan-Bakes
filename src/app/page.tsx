@@ -47,7 +47,7 @@ export default function Home() {
               pastries, and cakes with the finest ingredients. Indulge in our
               daily selection of freshly baked delights, perfect for any occasion.
             </p>
-            <Button title="View Our Menu" bgColor="#ED8C29" color="black" styles="cursor-pointer"/>
+            <Button title="View Our Menu" bgColor="#ED8C29" color="black" styles="cursor-pointer mt-10"/>
           </div>
         </motion.div>
         <motion.div 
