@@ -1,26 +1,15 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: #FFFFFF;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* .hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuC887IPNlEicLekQlI6_IGobOIq9Dx40dSbxDbSfOr1LlDYWa0QtXT5VXbcpn5EvWANT66Pe8rlEn1xUlkbRab_7JH1Uv465PFhHurkjjhAXA5jQETzUYt3z5UbzczsZbmIV7QIQZMjsU2CZCnTI9NslUg_XwW2y9VlyegY-YiUpureDSI9mAR986OtGe5VD4ALg3zdnbkTQVaJP9yCOqnaE1rZ9_YDW3W_ZFtFx1lyrFLYAJxFQWIFHuA12uYCln8TYtHhJTtViyQ");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+} */

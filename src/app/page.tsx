@@ -1,103 +1,96 @@
+'use client'
+import Button from "@/components/Button";
+import Card from "@/components/Card";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="flex items-center justify-center">
+      <main className="flex flex-col items-center justify-center w-full">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="hero relative min-h-[15rem] h-[480px] rounded-lg overflow-hidden mt-8 w-full max-w-7xl mx-auto"
+        >
+          <div className="absolute inset-0  ">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC887IPNlEicLekQlI6_IGobOIq9Dx40dSbxDbSfOr1LlDYWa0QtXT5VXbcpn5EvWANT66Pe8rlEn1xUlkbRab_7JH1Uv465PFhHurkjjhAXA5jQETzUYt3z5UbzczsZbmIV7QIQZMjsU2CZCnTI9NslUg_XwW2y9VlyegY-YiUpureDSI9mAR986OtGe5VD4ALg3zdnbkTQVaJP9yCOqnaE1rZ9_YDW3W_ZFtFx1lyrFLYAJxFQWIFHuA12uYCln8TYtHhJTtViyQ"
+              alt="Freshly baked bakery items"
+              fill
+              className="object-cover"
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <div className="absolute inset-0 bg-black/30"></div>
+          </div>
+          <div className="relative z-10 text-white p-8 flex flex-col items-center justify-center h-full text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Freshly Baked Goodness Every Day</h1>
+            <p className="text-sm max-w-2xl">
+              Welcome to The Daily Crumb, where we craft artisanal breads,
+              pastries, and cakes with the finest ingredients. Indulge in our
+              daily selection of freshly baked delights, perfect for any occasion.
+            </p>
+            <Button title="View Our Menu" bgColor="#ED8C29" color="black" styles="cursor-pointer"/>
+          </div>
+        </motion.div>
+        <motion.div 
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={container}
+          className="our-specialties flex flex-col justify-center mt-20 items-center lg:items-start gap-4 w-full max-w-7xl mx-auto px-4"
+        >
+          <motion.h1 variants={item} className="text-3xl font-bold text-center lg:text-left w-full">Our Specialties</motion.h1>
+          <motion.p variants={item} className="text-center lg:text-left max-w-3xl">
+            Discover our signature items, from our crusty sourdough bread to our
+            delicate macarons and flaky croissants. Each item is made with care
+            and attention to detail.
+          </motion.p>
+          <motion.div 
+            variants={container}
+            className="our-specialties-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-center w-full mt-8"
           >
-            Read our docs
-          </a>
-        </div>
+            <motion.div variants={item} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }}>
+              <Card 
+                image="https://lh3.googleusercontent.com/aida-public/AB6AXuCp9HgOsabDAcBj5Ed1sSinm9bqfj6-Ed5_Y52EgBWe_CKcWReWk4Afv92n2dLU0RvSnD2kDF5rTzKGk33b6JY-0y7RLCcIYQHLU5tyU5B6QUpvDDFeEzndgh7AnyPnpkI59U4jevJxWnEPPksuwY1sQ8IMhCxRQvkoC4oek87RlW92biVSeGspoWoHpG7f7-C28RpLOkWq1GceWdtuOZQKfpPejY139Qw4d9rUShszO7KTUfZw_ZFsnwLoxXTRv34xZjLGGE1CoEY" 
+                title="Artisanal Breads" 
+                description="Our breads are made using traditional methods and the finest flours, resulting in a perfect crust and a soft interior." 
+              />
+            </motion.div>
+            <motion.div variants={item} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }}>
+              <Card 
+                image="https://lh3.googleusercontent.com/aida-public/AB6AXuA1RBj8K0ZpaAKF_T4wM4R3qLIiKAiCAFl83q8WoCmEIAFpXkUpdpI1pCYM4w7GrDi1N-GwqVEu_kdmq0b7I-9yMJJykPbs8Ba6fEKUxVQnOjZ3F5BonBqBfQhsATKg_qpm19j6_ScstsrbnJvfAZOnyLU-XZFiZtMCjG0DrjoKGM1z-qj9Ssow7oG4SNfkleuN8pW-I_e8L6FWzu5JSQe8n-PS7qDCQcD-fxUg66VgqgXe6w6WX69ActB8L2YxW_lqGF5OlGHdmbc" 
+                title="Delicate Pastries" 
+                description="Our pastries are made with the finest ingredients, resulting in a perfect texture and a delicious flavor." 
+              />
+            </motion.div>
+            <motion.div variants={item} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }} className="md:col-span-2 lg:col-span-1">
+              <Card 
+                image="https://lh3.googleusercontent.com/aida-public/AB6AXuDxlB9-sEtFCnGIIGAp8eWt5wzeJ88ZjwVyAlvkKaHNdCuhtZDtocrtzWKSv9tA60TukJm1ZHCvDSj09xSkqGWsvrEcgJlMCBYbdLJ3E0fxO4Jmt1LiKz1QRn7x3c8mVf125zZahwfDXJOuoMNTJ5FIlxEHfrLzN_waOPezppCC4oX_Q4rENlAy0C8mawPjzm7jivFRziCV3Jbuinj0077Qf2bFfk42DWUrCijOSVvplnwIf2X9cLXzNu5v1XArXhro_gSkPWplg2U" 
+                title="Flaky Croissants" 
+                description="Our croissants are made with the finest ingredients, resulting in a perfect texture and a delicious flavor." 
+              />
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
