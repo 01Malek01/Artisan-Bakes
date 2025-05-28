@@ -15,7 +15,7 @@ export default function Button({title, onClick, bgColor, color, styles}: Props) 
         backgroundColor: bgColor,
         color: color
       }}
-      className={`${styles} rounded-xl p-2`}
+      className={`${styles} cursor-pointer rounded-xl p-2`}
     >
       {title}
     </button>

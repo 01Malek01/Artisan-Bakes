@@ -15,6 +15,24 @@ const container = {
   },
 };
 
+const pageContainerVariants = {
+  hidden: { opacity: 0 },
+  show: { 
+    opacity: 1,
+    transition: { 
+      duration: 0.8,
+      ease: "easeOut" 
+    }
+  },
+  exit: { 
+    opacity: 0,
+    transition: { 
+      duration: 0.5,
+      ease: "easeIn" 
+    }
+  }
+};
+
 const item = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -22,7 +40,13 @@ const item = {
 
 export default function Home() {
   return (
-    <div className="flex items-center justify-center">
+    <motion.div 
+      className="flex items-center justify-center"
+      initial="hidden"
+      animate="show"
+      exit="exit"
+      variants={pageContainerVariants}
+    >
       <main className="flex flex-col items-center justify-center w-full">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -91,6 +115,6 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </main>
-    </div>
+    </motion.div>
   );
 }

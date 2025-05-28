@@ -34,16 +34,15 @@ export default function Navbar() {
             <ul className='flex flex-row justify-between gap-9 items-center'>
               {[
                 { href: '/', label: 'Home' },
-                { href: '/products', label: 'About' },
-                { href: '/services', label: 'Menu' },
-                { href: '/about', label: 'Services' },
+                { href: '/menu', label: 'Menu' },
+                { href: '/about', label: 'About' },
                 { href: '/contact', label: 'Contact' },
               ].map((item, index) => (
                 <motion.li 
                   key={item.href}
                   initial={{ y: -10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ 
+                  transition={{   
                     delay: 0.4 + (index * 0.1),
                     type: 'spring',
                     stiffness: 300
