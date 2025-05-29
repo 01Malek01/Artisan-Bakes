@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Button from './Button';
+import { useNavbar } from '@/app/context/NavbarContext';
 
 const menuVariants = {
   hidden: { 
@@ -40,6 +41,7 @@ const menuItemVariants = {
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const { activeTab, setActiveTab } = useNavbar();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -97,11 +99,11 @@ export default function MobileNav() {
           >
             <motion.nav className="px-4 py-3 space-y-1">
               {[
-                { href: '/', label: 'Home' },
-                { href: '/products', label: 'About' },
-                { href: '/services', label: 'Menu' },
-                { href: '/about', label: 'Services' },
-                { href: '/contact', label: 'Contact' },
+                 { href: '/', label: 'Home' },
+                 { href: '/menu', label: 'Menu' },
+                 { href: '/about', label: 'About' },
+                 { href: '/gallery', label: 'Gallery' },
+                 { href: '/contact', label: 'Contact' },
               ].map((item) => (
                 <motion.div 
                   key={item.href}
@@ -111,8 +113,11 @@ export default function MobileNav() {
                 >
                   <Link 
                     href={item.href} 
-                    className="block px-3 py-3 text-base font-medium text-gray-700 hover:text-amber-600 transition-colors border-b border-gray-100"
-                    onClick={() => setIsOpen(false)}
+                    className={`block px-3 py-3 text-base font-medium ${activeTab === item.label ? 'text-amber-600 font-semibold' : 'text-gray-700'} hover:text-amber-600 transition-colors border-b border-gray-100`}
+                    onClick={() => {
+                      setIsOpen(false);
+                      setActiveTab(item.label);
+                    }}
                   >
                     {item.label}
                   </Link>
@@ -122,6 +127,7 @@ export default function MobileNav() {
                 variants={menuItemVariants}
                 className="px-3 py-4"
               >
+                <Link href="/signup">
                 <Button 
                   title="Order Now" 
                   bgColor="#ED8C29" 
@@ -129,7 +135,8 @@ export default function MobileNav() {
                   styles="w-full text-center hover:bg-amber-600 transition-colors"
                   onClick={() => setIsOpen(false)}
                 />
-              </motion.div>
+                </Link>
+                </motion.div>
             </motion.nav>
           </motion.div>
         )}

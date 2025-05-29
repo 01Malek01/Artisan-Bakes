@@ -1,11 +1,22 @@
 'use client';
 
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Button from './Button';
 import MobileNav from './MobileNav';
+import { useNavbar } from '@/app/context/NavbarContext';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
+  const { activeTab, setActiveTab } = useNavbar();
+  const pathname = usePathname();
+  
+  // Set active tab based on current path when component mounts
+  useEffect(() => {
+    const currentPath = pathname === '/' ? 'Home' : pathname.split('/')[1].charAt(0).toUpperCase() + pathname.split('/')[1].slice(1);
+    setActiveTab(currentPath);
+  }, [pathname, setActiveTab]);
   return (
     <motion.div 
       className='relative border-b-1 border-gray-400/50 bg-white/80 backdrop-blur-sm z-50'
@@ -36,6 +47,7 @@ export default function Navbar() {
                 { href: '/', label: 'Home' },
                 { href: '/menu', label: 'Menu' },
                 { href: '/about', label: 'About' },
+                { href: '/gallery', label: 'Gallery' },
                 { href: '/contact', label: 'Contact' },
               ].map((item, index) => (
                 <motion.li 
@@ -50,7 +62,11 @@ export default function Navbar() {
                   whileHover={{ scale: 1.05, color: '#D97706' }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link href={item.href} className='block py-2 transition-colors'>
+                  <Link 
+                    href={item.href} 
+                    className={`block py-2 transition-colors ${activeTab === item.label ? 'text-amber-600 font-semibold' : ''}`}
+                    onClick={() => setActiveTab(item.label)}
+                  >
                     {item.label}
                   </Link>
                 </motion.li>
@@ -62,12 +78,14 @@ export default function Navbar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
+                <Link href="/signup">
                 <Button 
                   title="Order Now" 
                   bgColor="#ED8C29" 
                   color="black" 
                   styles="cursor-pointer hover:bg-amber-600 transition-colors" 
-                />
+                  />
+                  </Link>
               </motion.li>
             </ul>
           </nav>

@@ -3,6 +3,7 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const container = {
   hidden: { opacity: 0 },
@@ -41,7 +42,7 @@ const item = {
 export default function Home() {
   return (
     <motion.div 
-      className="flex items-center justify-center"
+      className="flex items-center justify-center  py-5"
       initial="hidden"
       animate="show"
       exit="exit"
@@ -52,7 +53,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="hero relative min-h-[15rem] h-[480px] rounded-lg overflow-hidden mt-8 w-full max-w-7xl mx-auto"
+          className="hero relative min-h-[15rem] h-[480px] rounded-lg overflow-hidden  w-full max-w-7xl mx-auto"
         >
           <div className="absolute inset-0  ">
             <Image
@@ -71,7 +72,9 @@ export default function Home() {
               pastries, and cakes with the finest ingredients. Indulge in our
               daily selection of freshly baked delights, perfect for any occasion.
             </p>
+            <Link href="/menu">
             <Button title="View Our Menu" bgColor="#ED8C29" color="black" styles="cursor-pointer mt-10"/>
+            </Link>
           </div>
         </motion.div>
         <motion.div 

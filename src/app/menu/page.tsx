@@ -3,7 +3,6 @@
 import Card from '@/components/Card'
 import React from 'react'
 import { motion } from 'framer-motion'
-import Button from '@/components/Button';
 
 const pastries = [
     {
@@ -172,7 +171,7 @@ export default function page() {
     >
       <motion.div className="flex flex-col gap-2 mb-10" variants={headingVariants}>
         <h1 className="title text-2xl font-bold text-center lg:text-left">Our Menu</h1>
-        <p className="description text-gray-400/50 text-center lg:text-left">
+        <p className="description text-gray-400 text-center lg:text-left">
           Explore our delicious selection of freshly baked goods, made with love and the finest ingredients.
         </p>
       </motion.div>
@@ -182,7 +181,7 @@ export default function page() {
           Pastries
         </h1>
         <motion.div 
-          className="cards flex flex-col lg:grid grid-cols-2 justify-between my-5"
+          className="cards flex flex-col md:grid lg:grid-cols-3 md:grid-cols-2 justify-between my-5 gap-4"
           variants={containerVariants}
         >
           {pastries.map(p => (
@@ -202,7 +201,7 @@ export default function page() {
           Cakes
         </h1>
         <motion.div 
-          className="cards flex flex-col lg:grid grid-cols-2 justify-between my-5"
+          className="cards flex flex-col md:grid lg:grid-cols-3 md:grid-cols-2 justify-between my-5 gap-4"
           variants={containerVariants}
         >
           {cakes.map(c => (
@@ -222,7 +221,7 @@ export default function page() {
           Cookies
         </h1>
         <motion.div 
-          className="cards flex flex-col lg:grid grid-cols-2 justify-between my-5"
+          className="cards flex flex-col md:grid lg:grid-cols-3 md:grid-cols-2 justify-between my-5 gap-4"
           variants={containerVariants}
         >
           {cookies.map(c => (
@@ -242,11 +241,11 @@ export default function page() {
             Services 
         </h1>
         <motion.div 
-          className="cards flex flex-col justify-between my-5 w-full"
+          className="cards flex flex-col justify-between my-5  w-full"
           variants={containerVariants}
         >
           {services.map(s => (
-            <motion.div key={s.id} variants={itemVariants} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+            <motion.div  key={s.id} variants={itemVariants} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
               <Card 
               direction='row'
                 image={s.image}
@@ -255,6 +254,8 @@ export default function page() {
                 button='Learn More'
                  buttonBgColor='#F5F2F0'
                  buttonColor='black'
+                 imageOrder='1'
+                 
                  
               />
             </motion.div>

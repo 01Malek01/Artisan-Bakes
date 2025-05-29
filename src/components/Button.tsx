@@ -6,16 +6,19 @@ interface Props{
     bgColor : string
     color : string
     styles?: string
+    type?: 'button' | 'submit' | 'reset'
 } 
-export default function Button({title, onClick, bgColor, color, styles}: Props) {
+export default function Button({title, onClick, bgColor, color, styles, type}: Props) {
   return (
     <button 
       onClick={onClick} 
+      type={type || 'button'}
       style={{
         backgroundColor: bgColor,
-        color: color
+        color: color,
+        cursor:"pointer"
       }}
-      className={`${styles} cursor-pointer rounded-xl p-2`}
+      className={`${styles} rounded-xl p-2 hover:scale-105 transition-all duration-300 hover:bg-gradient-to-br hover:from-amber-600 hover:to-amber-500`}
     >
       {title}
     </button>
