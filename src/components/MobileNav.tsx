@@ -94,7 +94,7 @@ export default function MobileNav() {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            className="absolute left-0 right-0 top-16 z-50 bg-white/95 backdrop-blur-sm shadow-lg overflow-hidden"
+            className="absolute left-0 right-0 top-16 z-50 bg-white/95 backdrop-blur-sm shadow-lg "
             initial="hidden"
             animate="show"
             exit="hidden"
@@ -144,7 +144,7 @@ export default function MobileNav() {
                 {/* Language Switcher */}
                 <motion.div 
                   variants={menuItemVariants}
-                  className="px-3 py-3 border-t border-gray-100 mt-2"
+                  className="px-3 py-3 border-t border-gray-100 mt-2 z-10"
                 >
                   <div className="flex justify-center">
                     <LanguageSwitcher />
