@@ -140,21 +140,6 @@ const translations = {
     'gallery.item.events.description': 'Highlights from our special events and workshops.',
     'gallery.item.customers.title': 'Customer Moments',
     'gallery.item.customers.description': 'Capturing the joy of our customers enjoying our treats.',
-    // Contact Page
-    'contact.visitUs': 'Visit Us',
-    'contact.visitUs.description': 'Find us at our main location in the heart of downtown. We\'re open seven days a week to serve you the freshest baked goods.',
-    'contact.info': 'Contact Information',
-    'contact.address': 'Address',
-    'contact.phone': 'Phone',
-    'contact.email': 'Email',
-    'contact.hours': 'Hours',
-    'contact.hours.weekdays': 'Monday - Friday: 7 AM - 7 PM',
-    'contact.hours.weekends': 'Saturday - Sunday: 8 AM - 6 PM',
-    'contact.getInTouch': 'Get in Touch',
-    'contact.form.name': 'Name',
-    'contact.form.email': 'Email',
-    'contact.form.message': 'Message',
-    'contact.form.send': 'Send Message',
   },
   ar: {
     // Navigation
@@ -280,22 +265,7 @@ const translations = {
     'gallery.item.events.title': 'الفعاليات الخاصة',
     'gallery.item.events.description': 'أبرز لحظات فعالياتنا وورش العمل الخاصة.',
     'gallery.item.customers.title': 'لحظات العملاء',
-    'gallery.item.customers.description': 'توثيق فرحة عملائنا وهم يستمتعون بمنتجاتنا.',
-    // Contact Page
-    'contact.visitUs': 'زورونا',
-    'contact.visitUs.description': 'جدنا في موقعنا الرئيسي في قلب وسط المدينة. نحن مفتوحون سبعة أيام في الأسبوع لتقديم أطيب المخبوزات الطازجة.',
-    'contact.info': 'معلومات الاتصال',
-    'contact.address': 'العنوان',
-    'contact.phone': 'الهاتف',
-    'contact.email': 'البريد الإلكتروني',
-    'contact.hours': 'ساعات العمل',
-    'contact.hours.weekdays': 'الاثنين - الجمعة: 7 صباحًا - 7 مساءً',
-    'contact.hours.weekends': 'السبت - الأحد: 8 صباحًا - 6 مساءً',
-    'contact.getInTouch': 'تواصل معنا',
-    'contact.form.name': 'الاسم',
-    'contact.form.email': 'البريد الإلكتروني',
-    'contact.form.message': 'الرسالة',
-    'contact.form.send': 'إرسال الرسالة',
+    'gallery.item.customers.description': 'توثيق فرحة عملائنا وهم يستمتعون بمنتجاتنا.'
   }
 };
 
