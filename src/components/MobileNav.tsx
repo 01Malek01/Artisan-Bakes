@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Button from './Button';
+import LanguageSwitcher from './LanguageSwitcher';
 import { useNavbar } from '@/app/context/NavbarContext';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 const menuVariants = {
   hidden: { 
@@ -42,6 +44,7 @@ const menuItemVariants = {
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const { activeTab, setActiveTab } = useNavbar();
+  const { t } = useLanguage();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -99,11 +102,11 @@ export default function MobileNav() {
           >
             <motion.nav className="px-4 py-3 space-y-1">
               {[
-                 { href: '/', label: 'Home' },
-                 { href: '/menu', label: 'Menu' },
-                 { href: '/about', label: 'About' },
-                 { href: '/gallery', label: 'Gallery' },
-                 { href: '/contact', label: 'Contact' },
+                 { href: '/', label: 'Home', translationKey: 'nav.home' },
+                 { href: '/menu', label: 'Menu', translationKey: 'nav.menu' },
+                 { href: '/about', label: 'About', translationKey: 'nav.about' },
+                 { href: '/gallery', label: 'Gallery', translationKey: 'nav.gallery' },
+                 { href: '/contact', label: 'Contact', translationKey: 'nav.contact' },
               ].map((item) => (
                 <motion.div 
                   key={item.href}
@@ -119,7 +122,7 @@ export default function MobileNav() {
                       setActiveTab(item.label);
                     }}
                   >
-                    {item.label}
+                    {t(item.translationKey)}
                   </Link>
                 </motion.div>
               ))}
@@ -129,13 +132,23 @@ export default function MobileNav() {
               >
                 <Link href="/signup">
                 <Button 
-                  title="Order Now" 
+                  title={t('nav.orderNow')} 
                   bgColor="#ED8C29" 
                   color="black" 
                   styles="w-full text-center hover:bg-amber-600 transition-colors"
                   onClick={() => setIsOpen(false)}
                 />
                 </Link>
+                </motion.div>
+                
+                {/* Language Switcher */}
+                <motion.div 
+                  variants={menuItemVariants}
+                  className="px-3 py-3 border-t border-gray-100 mt-2"
+                >
+                  <div className="flex justify-center">
+                    <LanguageSwitcher />
+                  </div>
                 </motion.div>
             </motion.nav>
           </motion.div>

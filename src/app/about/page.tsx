@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 // Animation variants
 const pageContainerVariants = {
@@ -59,14 +60,18 @@ const textVariants = {
   }
 };
 
-const page: React.FC = () => {
+const Page: React.FC = () => {
+  const { t, language } = useLanguage();
+  const isRTL = language === 'ar';
   return (
     <motion.div 
       className="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5"
+      variants={pageContainerVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
-      variants={pageContainerVariants}
+      dir={isRTL ? 'rtl' : 'ltr'}
+      style={{ textAlign: isRTL ? 'right' : 'left' }}
     >
       <motion.div className="layout-content-container flex flex-col max-w-[960px] flex-1">
         <motion.div 
@@ -77,15 +82,14 @@ const page: React.FC = () => {
             className="text-[#181411] tracking-light text-[32px] font-bold leading-tight min-w-72"
             variants={textVariants}
           >
-            Our Story
+            {t('about.ourStory')}
           </motion.p>
         </motion.div>
         <motion.p 
           className="text-[#917E6B] text-base font-normal leading-normal pb-3 pt-1 px-4"
           variants={textVariants}
         >
-          At Artisan Bakes, our journey began with a simple dream: to create exceptional baked goods that bring joy to every bite. Founded in 2010 by Sarah Miller, a passionate
-          baker with a love for traditional techniques and high-quality ingredients, our bakery has grown from a small home kitchen to a beloved local institution.
+          {t('about.ourStory.content')}
         </motion.p>
         <motion.div 
           className="flex w-full grow bg-white @container py-3"
@@ -108,7 +112,7 @@ const page: React.FC = () => {
           initial="hidden"
           viewport={{ once: true, margin: "-50px" }}
         >
-          Our Values
+          {t('about.ourValues')}
         </motion.h2>
         <motion.p 
           className="text-[#917E6B] text-base font-normal leading-normal pb-3 pt-1 px-4"
@@ -117,8 +121,7 @@ const page: React.FC = () => {
           initial="hidden"
           viewport={{ once: true, margin: "-50px" }}
         >
-          We believe in the power of fresh, locally sourced ingredients and time-honored baking methods. Our commitment to quality means every pastry, bread, and cake is made
-          with care and attention to detail. We strive to create a warm and welcoming atmosphere where customers feel like part of our extended family.
+          {t('about.ourValues.content')}
         </motion.p>
         <motion.div 
           className="flex w-full grow bg-white @container py-3"
@@ -141,7 +144,7 @@ const page: React.FC = () => {
           initial="hidden"
           viewport={{ once: true, margin: "-50px" }}
         >
-          Our Mission
+          {t('about.ourMission')}
         </motion.h2>
         <motion.p 
           className="text-[#917E6B] text-base font-normal leading-normal pb-3 pt-1 px-4"
@@ -150,8 +153,7 @@ const page: React.FC = () => {
           initial="hidden"
           viewport={{ once: true, margin: "-50px" }}
         >
-          Our mission is to delight our customers with delicious, handcrafted baked goods that celebrate the art of baking. We aim to be a cornerstone of our community,
-          providing a place where people can gather, enjoy exceptional treats, and create lasting memories.
+          {t('about.ourMission.content')}
         </motion.p>
         <motion.div 
           className="flex w-full grow bg-white @container py-3"
@@ -172,4 +174,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { NavbarContextProvider } from "@/app/context/NavbarContext";
+import { LanguageProvider } from "@/app/context/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,13 +32,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NavbarContextProvider>
-          <Navbar />
-          <div className="max-w-[1200px] mx-auto flex justify-center items-center">
-          {children}
-          </div>
-          <Footer />
-        </NavbarContextProvider>
+        <LanguageProvider>
+          <NavbarContextProvider>
+            <Navbar />
+            <div className="max-w-[1200px] mx-auto flex justify-center items-center">
+            {children}
+            </div>
+            <Footer />
+          </NavbarContextProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

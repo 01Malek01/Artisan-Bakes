@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Button from '@/components/Button';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 // Animation variants
 const containerVariants = {
@@ -32,6 +33,7 @@ const itemVariants = {
 };
 
 const Page: React.FC = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -74,7 +76,7 @@ const Page: React.FC = () => {
               className="text-3xl font-bold text-center text-[#181411] mb-6"
               variants={itemVariants}
             >
-              Welcome Back
+              {t('login.title')}
             </motion.h2>
             
             <motion.form 
@@ -84,7 +86,7 @@ const Page: React.FC = () => {
             >
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-[#181411] mb-2">
-                  Email Address
+                  {t('login.email')}
                 </label>
                 <input
                   id="email"
@@ -94,7 +96,7 @@ const Page: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your email"
+                  placeholder={t('placeholder.email')}
                   className="w-full px-4 py-3 border border-[#e4e1dd] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ED8C29] focus:border-transparent transition-all duration-200 bg-white"
                 />
               </div>
@@ -102,13 +104,13 @@ const Page: React.FC = () => {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label htmlFor="password" className="block text-sm font-medium text-[#181411]">
-                    Password
+                    {t('login.password')}
                   </label>
                   <Link 
                     href="/forgot-password" 
                     className="text-sm text-[#ED8C29] hover:text-[#d17a1e] transition-colors"
                   >
-                    Forgot Password?
+                    {t('login.forgotPassword')}
                   </Link>
                 </div>
                 <input
@@ -119,7 +121,7 @@ const Page: React.FC = () => {
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  placeholder="Enter your password"
+                  placeholder={t('placeholder.password')}
                   className="w-full px-4 py-3 border border-[#e4e1dd] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ED8C29] focus:border-transparent transition-all duration-200 bg-white"
                 />
               </div>
@@ -127,7 +129,7 @@ const Page: React.FC = () => {
               <div className="pt-2">
                 <Button
                   type="submit"
-                  title="Log In"
+                  title={t('login.button')}
                   bgColor="#ED8C29"
                   color="white"
                   styles="w-full py-3 rounded-xl hover:bg-[#d17a1e] transition-colors duration-200"
@@ -140,12 +142,12 @@ const Page: React.FC = () => {
               variants={itemVariants}
             >
               <p className="text-[#917E6B]">
-                New to The Daily Crumb?{' '}
+                {t('login.newUser')}{' '}
                 <Link 
                   href="/signup" 
                   className="text-[#ED8C29] hover:text-[#d17a1e] font-medium transition-colors"
                 >
-                  Sign Up
+                  {t('login.signupLink')}
                 </Link>
               </p>
             </motion.div>

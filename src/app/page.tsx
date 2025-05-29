@@ -4,6 +4,7 @@ import Card from "@/components/Card";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const container = {
   hidden: { opacity: 0 },
@@ -40,6 +41,8 @@ const item = {
 };
 
 export default function Home() {
+  const { t , language} = useLanguage();
+  const isRTL = language === 'ar';
   return (
     <motion.div 
       className="flex items-center justify-center  py-5"
@@ -66,14 +69,12 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/30"></div>
           </div>
           <div className="relative z-10 text-white p-8 flex flex-col items-center justify-center h-full text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Freshly Baked Goodness Every Day</h1>
-            <p className="text-sm max-w-2xl">
-              Welcome to The Daily Crumb, where we craft artisanal breads,
-              pastries, and cakes with the finest ingredients. Indulge in our
-              daily selection of freshly baked delights, perfect for any occasion.
+            <h1  dir={isRTL ? 'rtl' : 'ltr'} style={{ textAlign: isRTL ? 'right' : 'left' }} className="text-4xl md:text-5xl font-bold mb-4">{t('home.hero.title')}</h1>
+            <p dir={isRTL ? 'rtl' : 'ltr'} style={{ textAlign: isRTL ? 'right' : 'left' }} className="text-sm max-w-2xl">
+              {t('home.hero.description')}
             </p>
             <Link href="/menu">
-            <Button title="View Our Menu" bgColor="#ED8C29" color="black" styles="cursor-pointer mt-10"/>
+            <Button title={t('home.hero.button')} bgColor="#ED8C29" color="black" styles="cursor-pointer mt-10"/>
             </Link>
           </div>
         </motion.div>
@@ -83,12 +84,11 @@ export default function Home() {
           viewport={{ once: true }}
           variants={container}
           className="our-specialties flex flex-col justify-center mt-20 items-center lg:items-start gap-4 w-full max-w-7xl mx-auto px-4"
+          dir={isRTL ? 'rtl' : 'ltr'} style={{ textAlign: isRTL ? 'right' : 'left' }}
         >
-          <motion.h1 variants={item} className="text-3xl font-bold text-center lg:text-left w-full">Our Specialties</motion.h1>
-          <motion.p variants={item} className="text-center lg:text-left max-w-3xl">
-            Discover our signature items, from our crusty sourdough bread to our
-            delicate macarons and flaky croissants. Each item is made with care
-            and attention to detail.
+          <motion.h1 variants={item} dir={isRTL ? 'rtl' : 'ltr'} style={{ textAlign: isRTL ? 'right' : 'left' }} className="text-3xl font-bold text-center lg:text-left w-full">{t('home.specialties.title')}</motion.h1>
+          <motion.p variants={item} dir={isRTL ? 'rtl' : 'ltr'} style={{ textAlign: isRTL ? 'right' : 'left' }} className="text-center lg:text-left max-w-3xl">
+            {t('home.specialties.description')}
           </motion.p>
           <motion.div 
             variants={container}
@@ -97,22 +97,22 @@ export default function Home() {
             <motion.div variants={item} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }}>
               <Card 
                 image="https://lh3.googleusercontent.com/aida-public/AB6AXuCp9HgOsabDAcBj5Ed1sSinm9bqfj6-Ed5_Y52EgBWe_CKcWReWk4Afv92n2dLU0RvSnD2kDF5rTzKGk33b6JY-0y7RLCcIYQHLU5tyU5B6QUpvDDFeEzndgh7AnyPnpkI59U4jevJxWnEPPksuwY1sQ8IMhCxRQvkoC4oek87RlW92biVSeGspoWoHpG7f7-C28RpLOkWq1GceWdtuOZQKfpPejY139Qw4d9rUShszO7KTUfZw_ZFsnwLoxXTRv34xZjLGGE1CoEY" 
-                title="Artisanal Breads" 
-                description="Our breads are made using traditional methods and the finest flours, resulting in a perfect crust and a soft interior." 
+                title={t('home.specialties.bread.title')} 
+                description={t('home.specialties.bread.description')} 
               />
             </motion.div>
             <motion.div variants={item} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }}>
               <Card 
                 image="https://lh3.googleusercontent.com/aida-public/AB6AXuA1RBj8K0ZpaAKF_T4wM4R3qLIiKAiCAFl83q8WoCmEIAFpXkUpdpI1pCYM4w7GrDi1N-GwqVEu_kdmq0b7I-9yMJJykPbs8Ba6fEKUxVQnOjZ3F5BonBqBfQhsATKg_qpm19j6_ScstsrbnJvfAZOnyLU-XZFiZtMCjG0DrjoKGM1z-qj9Ssow7oG4SNfkleuN8pW-I_e8L6FWzu5JSQe8n-PS7qDCQcD-fxUg66VgqgXe6w6WX69ActB8L2YxW_lqGF5OlGHdmbc" 
-                title="Delicate Pastries" 
-                description="Our pastries are made with the finest ingredients, resulting in a perfect texture and a delicious flavor." 
+                title={t('home.specialties.pastries.title')} 
+                description={t('home.specialties.pastries.description')} 
               />
             </motion.div>
             <motion.div variants={item} whileHover={{ y: -5 }} whileTap={{ scale: 0.98 }} className="md:col-span-2 lg:col-span-1">
               <Card 
                 image="https://lh3.googleusercontent.com/aida-public/AB6AXuDxlB9-sEtFCnGIIGAp8eWt5wzeJ88ZjwVyAlvkKaHNdCuhtZDtocrtzWKSv9tA60TukJm1ZHCvDSj09xSkqGWsvrEcgJlMCBYbdLJ3E0fxO4Jmt1LiKz1QRn7x3c8mVf125zZahwfDXJOuoMNTJ5FIlxEHfrLzN_waOPezppCC4oX_Q4rENlAy0C8mawPjzm7jivFRziCV3Jbuinj0077Qf2bFfk42DWUrCijOSVvplnwIf2X9cLXzNu5v1XArXhro_gSkPWplg2U" 
-                title="Flaky Croissants" 
-                description="Our croissants are made with the finest ingredients, resulting in a perfect texture and a delicious flavor." 
+                title={t('home.specialties.croissants.title')} 
+                description={t('home.specialties.croissants.description')} 
               />
             </motion.div>
           </motion.div>

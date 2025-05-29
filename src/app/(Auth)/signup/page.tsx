@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Button from '@/components/Button';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 // Animation variants
 const containerVariants = {
@@ -32,6 +33,7 @@ const itemVariants = {
 };
 
 const Page = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -76,7 +78,7 @@ const Page = () => {
               className="text-3xl font-bold text-center text-[#181411] mb-6"
               variants={itemVariants}
             >
-              Create Your Account
+              {t('signup.title')}
             </motion.h2>
             
             <motion.form 
@@ -86,7 +88,7 @@ const Page = () => {
             >
               <div>
                 <label htmlFor="fullName" className="block text-sm font-medium text-[#181411] mb-2">
-                  Full Name
+                  {t('signup.fullName')}
                 </label>
                 <input
                   id="fullName"
@@ -96,14 +98,14 @@ const Page = () => {
                   required
                   value={formData.fullName}
                   onChange={handleChange}
-                  placeholder="Enter your full name"
+                  placeholder={t('placeholder.fullName')}
                   className="w-full px-4 py-3 border border-[#e4e1dd] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ED8C29] focus:border-transparent transition-all duration-200 bg-[#f9f7f6]"
                 />
               </div>
               
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-[#181411] mb-2">
-                  Email Address
+                  {t('signup.email')}
                 </label>
                 <input
                   id="email"
@@ -113,14 +115,14 @@ const Page = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your email"
+                  placeholder={t('placeholder.email')}
                   className="w-full px-4 py-3 border border-[#e4e1dd] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ED8C29] focus:border-transparent transition-all duration-200 bg-[#f9f7f6]"
                 />
               </div>
               
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-[#181411] mb-2">
-                  Password
+                  {t('signup.password')}
                 </label>
                 <input
                   id="password"
@@ -130,14 +132,14 @@ const Page = () => {
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  placeholder="Create a password"
+                  placeholder={t('placeholder.createPassword')}
                   className="w-full px-4 py-3 border border-[#e4e1dd] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ED8C29] focus:border-transparent transition-all duration-200 bg-[#f9f7f6]"
                 />
               </div>
               
               <div>
                 <label htmlFor="confirmPassword" className="block text-sm font-medium text-[#181411] mb-2">
-                  Confirm Password
+                  {t('signup.confirmPassword')}
                 </label>
                 <input
                   id="confirmPassword"
@@ -147,7 +149,7 @@ const Page = () => {
                   required
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  placeholder="Confirm your password"
+                  placeholder={t('placeholder.confirmPassword')}
                   className="w-full px-4 py-3 border border-[#e4e1dd] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ED8C29] focus:border-transparent transition-all duration-200 bg-[#f9f7f6]"
                 />
               </div>
@@ -155,7 +157,7 @@ const Page = () => {
               <div className="pt-2">
                 <Button
                   type="submit"
-                  title="Sign Up"
+                  title={t('signup.button')}
                   bgColor="#ED8C29"
                   color="white"
                   styles="w-full py-3 rounded-xl hover:bg-[#d17a1e] transition-colors duration-200"
@@ -168,12 +170,12 @@ const Page = () => {
               variants={itemVariants}
             >
               <p className="text-[#917E6B]">
-                Already have an account?{' '}
+                {t('signup.existingUser')}{' '}
                 <Link 
                   href="/login" 
                   className="text-[#ED8C29] hover:text-[#d17a1e] font-medium transition-colors"
                 >
-                  Log In
+                  {t('signup.loginLink')}
                 </Link>
               </p>
             </motion.div>

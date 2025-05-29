@@ -5,11 +5,14 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Button from './Button';
 import MobileNav from './MobileNav';
+import LanguageSwitcher from './LanguageSwitcher';
 import { useNavbar } from '@/app/context/NavbarContext';
+import { useLanguage } from '@/app/context/LanguageContext';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const { activeTab, setActiveTab } = useNavbar();
+  const { t } = useLanguage();
   const pathname = usePathname();
   
   // Set active tab based on current path when component mounts
@@ -31,7 +34,7 @@ export default function Navbar() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
         >
-          Artisan Bakes
+          {t('brand.name')}
         </motion.div>
         
         {/* Desktop Navigation */}
@@ -44,11 +47,11 @@ export default function Navbar() {
           <nav>
             <ul className='flex flex-row justify-between gap-9 items-center'>
               {[
-                { href: '/', label: 'Home' },
-                { href: '/menu', label: 'Menu' },
-                { href: '/about', label: 'About' },
-                { href: '/gallery', label: 'Gallery' },
-                { href: '/contact', label: 'Contact' },
+                { href: '/', label: 'Home', translationKey: 'nav.home' },
+                { href: '/menu', label: 'Menu', translationKey: 'nav.menu' },
+                { href: '/about', label: 'About', translationKey: 'nav.about' },
+                { href: '/gallery', label: 'Gallery', translationKey: 'nav.gallery' },
+                { href: '/contact', label: 'Contact', translationKey: 'nav.contact' },
               ].map((item, index) => (
                 <motion.li 
                   key={item.href}
@@ -67,7 +70,7 @@ export default function Navbar() {
                     className={`block py-2 transition-colors ${activeTab === item.label ? 'text-amber-600 font-semibold' : ''}`}
                     onClick={() => setActiveTab(item.label)}
                   >
-                    {item.label}
+                    {t(item.translationKey)}
                   </Link>
                 </motion.li>
               ))}
@@ -80,7 +83,7 @@ export default function Navbar() {
               >
                 <Link href="/signup">
                 <Button 
-                  title="Order Now" 
+                  title={t('nav.orderNow')} 
                   bgColor="#ED8C29" 
                   color="black" 
                   styles="cursor-pointer hover:bg-amber-600 transition-colors" 
@@ -91,6 +94,16 @@ export default function Navbar() {
           </nav>
         </motion.div>
 
+        {/* Language Switcher */}
+        <motion.div
+          className="hidden lg:flex items-center mr-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <LanguageSwitcher />
+        </motion.div>
+        
         {/* Mobile Navigation Toggle */}
         <motion.div 
           className="lg:hidden z-50"
